@@ -1,0 +1,14 @@
+.idea/
+Library/
+Logs/
+obj/
+Packages/
+Temp/
+UIElementsSchema/
+UserSettings/
+*.sln
+*.csproj
+*.sln
+*.userprefs
+*.unityproj
+*.DS_Store
