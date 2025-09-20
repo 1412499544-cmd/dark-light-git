@@ -35,9 +35,9 @@ public class EnemyGenerator : MonoBehaviour
             {
                 foreach (var enemyBluePrint in MinorEnemyConfigSO.enemyBluePrints)
                 {
-                    
-                    //var enemy = Instantiate(enemyPrefab,, Quaternion.identity, transform);
-                    //enemy.SetUpEnemy(enemyBluePrint.column,enemyBluePrint.line,enemyDataDict[enemyBluePrint.enemyType]);
+                    var enemyPos = HexGridLayouts.Instance.GetPositionForHexFromAxial(enemyBluePrint.column, enemyBluePrint.line);
+                    var enemy = Instantiate(enemyPrefab,enemyPos, Quaternion.identity, transform);
+                    enemy.SetUpEnemy(enemyBluePrint.column,enemyBluePrint.line,enemyDataDict[enemyBluePrint.enemyType]);
                 }
             }
             else if (room.roomData.roomType == RoomType.EliteEnemy)
