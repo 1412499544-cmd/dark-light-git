@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HexGridLayouts : MonoBehaviour
+public class HexGridLayouts : Singleton<HexGridLayouts>
 {
     [Header("Grid Settings")]
     //定义地图大小

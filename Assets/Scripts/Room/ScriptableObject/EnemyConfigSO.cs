@@ -11,7 +11,6 @@ public class EnemyConfigSO : ScriptableObject
 public class EnemyBluePrint
 {
     public EnemyType enemyType;
-    //public EnemyDataSO enemyData;
-    public float posX, posY;
+    public EnemyDataSO enemyData;
     public int column, line;
 }
