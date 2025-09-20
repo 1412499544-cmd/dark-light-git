@@ -361,7 +361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &282827231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,7 +561,7 @@ MonoBehaviour:
   totalLoadProgress: 0
   visualLoadProgress: 3
   updateRoomEvent: {fileID: 11400000, guid: d8ca3e2326defaa40a32509a3307e9d9, type: 2}
-  afterEnemyRoomLoaded: {fileID: 0}
+  afterEnemyRoomLoaded: {fileID: 11400000, guid: af4c729e3cba87348a292d6c1921a3cd, type: 2}
   updateSceneLoadPanelEvent: {fileID: 11400000, guid: 39f983aac14d6044faee6590934c4670, type: 2}
 --- !u!4 &402415816
 Transform:

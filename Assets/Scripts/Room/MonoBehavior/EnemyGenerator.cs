@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    private Room currentRoom;
+    [Header("地图生成物体配置")]
+    public EnemyConfigSO MinorEnemyConfigSO;
+
+    [Header("预制体")] public Enemy enemy;
+    
+    //[Header("广播")]
+    //public ObjectEventSO 
     
     /// <summary>
     /// 房间加载后事件
@@ -12,12 +18,15 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (value is Room room)
         {
-            currentRoom = room;
-            if (currentRoom.roomData.roomType == RoomType.MinorEnemy)
+            if (room.roomData.roomType == RoomType.MinorEnemy)
             {
-                //TODO:普通敌人配置表
+                foreach (var enemyBluePrint in MinorEnemyConfigSO.enemyBluePrints)
+                {
+                    //TODO:更新地图，生成敌人
+                    
+                }
             }
-            else if (currentRoom.roomData.roomType == RoomType.EliteEnemy)
+            else if (room.roomData.roomType == RoomType.EliteEnemy)
             {
                 
             }

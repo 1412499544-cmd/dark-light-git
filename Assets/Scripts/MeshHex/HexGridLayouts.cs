@@ -134,24 +134,22 @@ public class HexGridLayouts : MonoBehaviour
     }
 
     //更新网格显示
-    public void UpdateTilesState(int column, int line)
+    public void UpdateTilesState(int column, int line,bool isClose)
     {
         foreach (var hexTile in hexTiles)
         {
-            if (hexTile.column == column && hexTile.line == line)
+            if (hexTile.column == column && hexTile.line == line && isClose == false)
             {
                 hexTile.tileState = true;
                 hexTile.hexRenderer.m_meshFilter.mesh = hexTile.hexRenderer.m_mesh;
             }
+            else if (hexTile.column == column && hexTile.line == line && isClose == true)
+            {
+                hexTile.tileState = false;
+                hexTile.hexRenderer.m_meshFilter.mesh = null;
+            }
         }
     }
-
-    [ContextMenu("网格更新")]
-    public void Test()
-    {
-        UpdateTilesState(0,0);
-    }
-    
 }
 
 [System.Serializable]
