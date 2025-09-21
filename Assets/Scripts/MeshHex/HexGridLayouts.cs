@@ -21,7 +21,10 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
 
     [Header("网格列表")] 
     public List<HexTileSceneData> hexTiles;
-
+    
+    [Header("预制体")]
+    public HexRenderer hexTile;
+    
     private void OnEnable()
     {
         LayoutGrid();
@@ -64,30 +67,31 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
                     if (hexPosition.sqrMagnitude <= radiusSquared)
                     {
                         // 3. 【最后生成】只有在圆形内的六边形才会被创建
-                        GameObject tile = new GameObject($"Hex Axial ({q},{r})", typeof(HexRenderer));
-                        tile.GetComponent<HexRenderer>().column = q;
-                        tile.GetComponent<HexRenderer>().line = r;
-                        tile.transform.SetParent(transform, false);
+                        var tile = Instantiate(hexTile,transform);
+                        tile.column = q;
+                        tile.line = r;
 
                         // 使用我们已经计算好的位置
                         tile.transform.localPosition = hexPosition;
                         tile.transform.localRotation = Quaternion.Euler(quaternion);
-
-                        HexRenderer hexRenderer = tile.GetComponent<HexRenderer>();
-                        hexRenderer.m_meshRenderer.material = material;
-                        hexRenderer.isFlatTopped = isFlatTopped;
-                        hexRenderer.outerSize = outerSize;
-                        hexRenderer.innerSize = innerSize;
-                        hexRenderer.height = height;
-                        hexRenderer.DrawMesh();
-                        hexRenderer.m_meshFilter.mesh = null;
                         
-                        HexTileSceneData hexTileSceneData = new HexTileSceneData();
-                        hexTileSceneData.column = q;
-                        hexTileSceneData.line = r;
-                        hexTileSceneData.hexRenderer = hexRenderer;
-                        hexTileSceneData.hexPosition = new SerializeVector3(GetPositionForHexFromAxial(q, r));
-                        hexTileSceneData.tileState = false;
+                        tile.m_meshRenderer.material = material;
+                        tile.originalColor = material.color;
+                        tile.isFlatTopped = isFlatTopped;
+                        tile.outerSize = outerSize;
+                        tile.innerSize = innerSize;
+                        tile.height = height;
+                        tile.DrawMesh();
+                        tile.m_meshFilter.mesh = null;
+                        
+                        HexTileSceneData hexTileSceneData = new HexTileSceneData
+                        {
+                            column = q,
+                            line = r,
+                            hexRenderer = tile.GetComponent<HexRenderer>(),
+                            hexPosition = new SerializeVector3(GetPositionForHexFromAxial(q, r)),
+                            tileState = false
+                        };
                         hexTiles.Add(hexTileSceneData);
                     }
                 }
@@ -150,6 +154,26 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
             }
         }
     }
+
+    /// <summary>
+    /// 得到每个网格的另据网格
+    /// </summary>
+    public void UpdateHexTilesNeighbours()
+    {
+        foreach (var hexTile in hexTiles)
+        {
+            //TODO:List<HexRenderer> neighbours = GetNeighbours(hexTile.hexRenderer);
+            //hexTile.hexRenderer.neighbours = neighbours;
+        }
+    }
+
+    // private List<HexRenderer> GetNeighbours(HexRenderer hexTile)
+    // {
+    //     List<HexRenderer> neighbours = new List<HexRenderer>();
+    //     
+    //     
+    //     
+    // }
 }
 
 [System.Serializable]

@@ -30,6 +30,7 @@ public class HexRenderer : MonoBehaviour
     public MeshFilter m_meshFilter;
     public MeshRenderer m_meshRenderer;
     public SortingGroup m_sortingGroup;
+    public Color originalColor;
     
     private List<Face> m_faces = new List<Face>();
     
@@ -41,6 +42,8 @@ public class HexRenderer : MonoBehaviour
     
     //设置是否平顶六边形
     public bool isFlatTopped;
+    
+    public List<HexRenderer> neighbours = new List<HexRenderer>();
 
     private void Awake()
     {
@@ -149,5 +152,20 @@ public class HexRenderer : MonoBehaviour
         float angle_rad = Mathf.PI / 180f * angle_deg;
         
         return new Vector3(size * Mathf.Cos(angle_rad),height, size * Mathf.Sin(angle_rad));
+    }
+
+    /// <summary>
+    /// 高亮网格
+    /// </summary>
+    /// <param name="value">Enemy</param>
+    public void UpdateHighlightHexRenderer(object value)
+    {
+        if(m_meshRenderer.material.color == originalColor)
+            m_meshRenderer.material.color = Color.red;
+        else
+            m_meshRenderer.material.color = originalColor;
+        
+        //TODO:高亮网格，显示可以移动的网格位置
+        
     }
 }

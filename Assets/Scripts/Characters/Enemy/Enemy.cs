@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -13,10 +14,23 @@ public class Enemy : CharacterBase
     public EnemyType enemyType;
     public EnemyAction currentAction;
 
+    [Header("广播")] public ObjectEventSO highlightHexRenderer;
+
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    // protected override void Update()
+    // {
+    //     base.Update();
+    // }
+
+    private void OnMouseDown()
+    {
+        highlightHexRenderer.RaiseEvent(this,this);
+        Debug.Log("点击了:"+this.gameObject.name);
     }
 
     public void SetUpEnemy(int column, int line,EnemyDataSO enemyDataSO)

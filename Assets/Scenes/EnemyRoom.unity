@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &815005587
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -245,6 +245,7 @@ MonoBehaviour:
   verticalMargin: 2.6
   quaternion: {x: 70, y: 0, z: 0}
   hexTiles: []
+  hexTile: {fileID: 5137002265289559886, guid: bdf4b7a1edb1d264c9572bab447ea246, type: 3}
 --- !u!4 &1021682027
 Transform:
   m_ObjectHideFlags: 0
