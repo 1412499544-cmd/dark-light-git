@@ -160,12 +160,20 @@ public class HexRenderer : MonoBehaviour
     /// <param name="value">Enemy</param>
     public void UpdateHighlightHexRenderer(object value)
     {
-        if(m_meshRenderer.material.color == originalColor)
-            m_meshRenderer.material.color = Color.red;
-        else
-            m_meshRenderer.material.color = originalColor;
-        
-        //TODO:高亮网格，显示可以移动的网格位置
+        if (value is Enemy enemy)
+        {
+            var e = enemy;
+            if (column == e.column && line == e.line)
+            {
+                m_meshRenderer.material.color = m_meshRenderer.material.color == originalColor ? Color.red : originalColor;
+
+                //TODO:显示可以移动的网格位置
+                foreach (var neighbour in neighbours)
+                {
+                    neighbour.m_meshRenderer.material.color = Color.blue;
+                }
+            }
+        }
         
     }
 }

@@ -27,6 +27,8 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
     [Header("预制体")]
     public HexRenderer hexTile;
 
+    public SkillHexTileConfigSO skillHexTileConfigSO;
+
     private void OnEnable()
     {
         LayoutGrid();
@@ -71,7 +73,7 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
 
                         tile.m_meshRenderer.material = material;
                         // 假设你的 HexRenderer 中有 originalColor 属性
-                        // tile.originalColor = material.color;
+                        tile.originalColor = material.color;
                         tile.isFlatTopped = isFlatTopped;
                         tile.outerSize = outerSize;
                         tile.innerSize = innerSize;
@@ -159,19 +161,26 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
         }
     }
 
+    /// <summary>
+    /// 获取与网格相连的几个格子
+    /// </summary>
+    /// <param name="hexTile"></param>
+    /// <returns></returns>
     private List<HexRenderer> GetNeighbours(HexRenderer hexTile)
     {
         List<HexRenderer> neighbours = new List<HexRenderer>();
-
-        // 【修正 #2】轴向坐标系的6个邻居方向偏移是固定的，与 isFlatTopped 无关。
+        
+        //网格方向的格子
         Vector2Int[] neighbourCoords = new Vector2Int[]
         {
-            new Vector2Int(1, 0),   // 右
-            new Vector2Int(1, -1),  // 右下
-            new Vector2Int(0, -1),  // 左下
-            new Vector2Int(-1, 0),  // 左
-            new Vector2Int(-1, 1),  // 左上
-            new Vector2Int(0, 1),   // 右上
+            new Vector2Int(1, 0),   // 右下
+            new Vector2Int(1, -1),  // 右上
+            new Vector2Int(0, -1),  // 上
+            new Vector2Int(-1, 0),  // 左上
+            new Vector2Int(-1, 1),  // 左下
+            new Vector2Int(0, 1),   // 下
+            new Vector2Int(-2, 1),  //(-2,1),(-4,2),(-6,3) 左
+            new Vector2Int(2, -1)   //(2,-1),(4,-2),(6,-3) 右
         };
 
         // 获取当前六边形的坐标 (q, r)
@@ -189,6 +198,50 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
             }
         }
         return neighbours;
+    }
+    
+    /// <summary>
+    /// 获取技能范围的格子
+    /// </summary>
+    /// <param name="hexTile"></param>
+    /// <returns></returns>
+    private List<HexRenderer> GetSkillHexTiles(HexRenderer hexTile)
+    {
+        List<HexRenderer> neighbours = new List<HexRenderer>();
+        
+        //网格方向的格子
+        List<Vector2Int> neighbourCoords = new();
+        AddHexTileNeighbours(skillHexTileConfigSO.SkillHexTile,neighbourCoords);
+
+
+        // 获取当前六边形的坐标 (q, r)
+        Vector2Int currentCoord = new Vector2Int(hexTile.column, hexTile.line);
+
+        // 遍历邻居坐标，并检查是否存在于字典中
+        foreach (var offset in neighbourCoords)
+        {
+            Vector2Int neighbourPosition = currentCoord + offset;
+
+            // 现在这里的 neighbourPosition 是 (q, r)，与字典的键一致，可以正确查找到
+            if (hexTileDict.ContainsKey(neighbourPosition))
+            {
+                neighbours.Add(hexTileDict[neighbourPosition].hexRenderer);
+            }
+        }
+        return neighbours;
+    }
+    
+    private void AddHexTileNeighbours(SkillHexTile hexTile, List<Vector2Int> neighbourCoords)
+    {
+        // 可以通过一个方法自动添加每个方向
+        neighbourCoords.Add(hexTile.Up);
+        neighbourCoords.Add(hexTile.Down);
+        neighbourCoords.Add(hexTile.Right);
+        neighbourCoords.Add(hexTile.Left);
+        neighbourCoords.Add(hexTile.RightUp);
+        neighbourCoords.Add(hexTile.RightDown);
+        neighbourCoords.Add(hexTile.LeftDown);
+        neighbourCoords.Add(hexTile.LeftUp);
     }
 }
 
