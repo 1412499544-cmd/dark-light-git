@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 //容器，映射每个网格的面
 public struct Face
@@ -22,11 +23,13 @@ public struct Face
 //网格
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(SortingGroup))]
 public class HexRenderer : MonoBehaviour
 {
     public Mesh m_mesh;
     public MeshFilter m_meshFilter;
     public MeshRenderer m_meshRenderer;
+    public SortingGroup m_sortingGroup;
     
     private List<Face> m_faces = new List<Face>();
     
@@ -34,6 +37,7 @@ public class HexRenderer : MonoBehaviour
     public float outerSize;
     public float height;
     public int column, line;
+    public int sortingOrder = 1;
     
     //设置是否平顶六边形
     public bool isFlatTopped;
@@ -42,11 +46,14 @@ public class HexRenderer : MonoBehaviour
     {
         m_meshFilter =  GetComponent<MeshFilter>();
         m_meshRenderer = GetComponent<MeshRenderer>();
+        m_sortingGroup = GetComponent<SortingGroup>();
 
         m_mesh = new();
         m_mesh.name = "Hex";
         
         m_meshFilter.mesh = m_mesh;
+        m_sortingGroup.sortingLayerID = SortingLayer.NameToID("Background");
+        m_sortingGroup.sortingOrder = sortingOrder;
     }
 
     private void OnEnable()

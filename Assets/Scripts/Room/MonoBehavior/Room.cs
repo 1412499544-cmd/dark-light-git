@@ -31,6 +31,7 @@ public class Room : MonoBehaviour
     {
         if(roomState == RoomState.Attainable)
             LoadRoomEvent.RaiseEvent(this,this);
+		Debug.Log(roomData.roomType);
     }
 
     /// <summary>

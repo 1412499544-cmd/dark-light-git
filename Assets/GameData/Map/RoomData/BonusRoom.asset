@@ -15,7 +15,7 @@ MonoBehaviour:
   roomType: 32
   roomSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   sceneToLoad:
-    m_AssetGUID: 
+    m_AssetGUID: de2d79de6479a2647bde529870180b12
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

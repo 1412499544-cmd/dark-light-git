@@ -134,16 +134,16 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
     }
 
     //更新网格显示
-    public void UpdateTilesState(int column, int line,bool isClose)
+    public void UpdateTilesState(int column, int line,bool isOpen)
     {
         foreach (var hexTile in hexTiles)
         {
-            if (hexTile.column == column && hexTile.line == line && isClose == false)
+            if (hexTile.column == column && hexTile.line == line && isOpen == true)
             {
                 hexTile.tileState = true;
                 hexTile.hexRenderer.m_meshFilter.mesh = hexTile.hexRenderer.m_mesh;
             }
-            else if (hexTile.column == column && hexTile.line == line && isClose == true)
+            else if (hexTile.column == column && hexTile.line == line && isOpen == false)
             {
                 hexTile.tileState = false;
                 hexTile.hexRenderer.m_meshFilter.mesh = null;

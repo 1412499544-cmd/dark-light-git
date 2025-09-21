@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1701994179
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,7 +101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544e0bd681be84044a7c5706a7b87738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 0}
+  column: 0
+  line: 0
+  enemyDataSO: {fileID: 0}
+  enemyType: 0
+  currentAction:
+    intentSprite: {fileID: 0}
 --- !u!70 &8539127641706523154
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

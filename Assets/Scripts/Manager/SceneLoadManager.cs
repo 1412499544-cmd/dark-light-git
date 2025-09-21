@@ -115,7 +115,8 @@ public class SceneLoadManager : MonoBehaviour
     private async UniTask WaitForFade(bool fadeInState)
     {
         var fadeTween = fadeInState ? fadePanel.FadeIn(0.5f) : fadePanel.FadeOut(0.5f);
-        await fadeTween.AsyncWaitForCompletion();
+        if (fadeInState)
+            await fadeTween.AsyncWaitForCompletion();
         
     }
     

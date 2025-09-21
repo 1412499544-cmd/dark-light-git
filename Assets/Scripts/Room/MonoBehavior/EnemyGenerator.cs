@@ -38,6 +38,7 @@ public class EnemyGenerator : MonoBehaviour
                     var enemyPos = HexGridLayouts.Instance.GetPositionForHexFromAxial(enemyBluePrint.column, enemyBluePrint.line);
                     var enemy = Instantiate(enemyPrefab,enemyPos, Quaternion.identity, transform);
                     enemy.SetUpEnemy(enemyBluePrint.column,enemyBluePrint.line,enemyDataDict[enemyBluePrint.enemyType]);
+                    HexGridLayouts.Instance.UpdateTilesState(enemyBluePrint.column, enemyBluePrint.line,true);
                 }
             }
             else if (room.roomData.roomType == RoomType.EliteEnemy)

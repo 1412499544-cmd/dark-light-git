@@ -25,7 +25,9 @@ public class Enemy : CharacterBase
         this.line = line;
         this.enemyDataSO = enemyDataSO;
         enemyType = enemyDataSO.enemyType;
+        spriteRenderer.sprite = enemyDataSO.sprite;
         var randomIndex = Random.Range(0, enemyDataSO.actions.Count);
-        currentAction = enemyDataSO.actions[randomIndex];
+        //TODO:action数量更改
+        //currentAction = enemyDataSO.actions[randomIndex];
     }
 }
