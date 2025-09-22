@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3990ea7616ed04e8cd82e91c2d2de6, type: 3}
   m_Name: SkillHexTileConfigSO
   m_EditorClassIdentifier: 
-  SkillHexTile:
-    up: 0
+  skillHexTile:
+    up: 1
     down: 0
     left: 0
     right: 0
@@ -21,3 +21,4 @@ MonoBehaviour:
     leftDown: 0
     leftUp: 0
     rightDown: 0
+  addNumber: 3

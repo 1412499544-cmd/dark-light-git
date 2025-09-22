@@ -156,7 +156,7 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
     {
         foreach (var hexTile in hexTileList)
         {
-            List<HexRenderer> neighbours = GetNeighbours(hexTile.hexRenderer);
+            List<HexRenderer> neighbours = GetSkillHexTiles(hexTile.hexRenderer);
             hexTile.hexRenderer.neighbours = neighbours;
         }
     }
@@ -211,9 +211,8 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
         
         //网格方向的格子
         List<Vector2Int> neighbourCoords = new();
-        AddHexTileNeighbours(skillHexTileConfigSO.SkillHexTile,neighbourCoords);
-
-
+        AddHexTileNeighbours(skillHexTileConfigSO,neighbourCoords);
+        
         // 获取当前六边形的坐标 (q, r)
         Vector2Int currentCoord = new Vector2Int(hexTile.column, hexTile.line);
 
@@ -231,17 +230,19 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
         return neighbours;
     }
     
-    private void AddHexTileNeighbours(SkillHexTile hexTile, List<Vector2Int> neighbourCoords)
+    private void AddHexTileNeighbours(SkillHexTileConfigSO hexTileConfig, List<Vector2Int> neighbourCoords)
     {
-        // 可以通过一个方法自动添加每个方向
-        neighbourCoords.Add(hexTile.Up);
-        neighbourCoords.Add(hexTile.Down);
-        neighbourCoords.Add(hexTile.Right);
-        neighbourCoords.Add(hexTile.Left);
-        neighbourCoords.Add(hexTile.RightUp);
-        neighbourCoords.Add(hexTile.RightDown);
-        neighbourCoords.Add(hexTile.LeftDown);
-        neighbourCoords.Add(hexTile.LeftUp);
+        for (int i = 1; i < hexTileConfig.addNumber+1; i++)
+        {
+            neighbourCoords.Add(hexTileConfig.skillHexTile.Up*i);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.Down*i);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.Right*i);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.Left*i);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.RightUp*i);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.RightDown*i);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.LeftDown*i);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.LeftUp*i);
+        }
     }
 }
 

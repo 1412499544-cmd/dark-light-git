@@ -244,8 +244,9 @@ MonoBehaviour:
   horizontalMargin: 0.5
   verticalMargin: 2.6
   quaternion: {x: 70, y: 0, z: 0}
-  hexTiles: []
+  hexTileList: []
   hexTile: {fileID: 5137002265289559886, guid: bdf4b7a1edb1d264c9572bab447ea246, type: 3}
+  skillHexTileConfigSO: {fileID: 11400000, guid: 1edd23743c70a7e479bf8550575c8196, type: 2}
 --- !u!4 &1021682027
 Transform:
   m_ObjectHideFlags: 0

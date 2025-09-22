@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillHexTileConfigSO",menuName = "Room/SkillHexTileConfigSO")]
 public class SkillHexTileConfigSO : ScriptableObject
 {
-    public SkillHexTile SkillHexTile;
+    public SkillHexTile skillHexTile;
+    public int addNumber;
 }
 
 [System.Serializable]
