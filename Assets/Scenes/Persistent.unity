@@ -559,7 +559,7 @@ MonoBehaviour:
   fadePanel: {fileID: 282827233}
   currentMapRoomVector: {x: 0, y: 0}
   totalLoadProgress: 0
-  visualLoadProgress: 3
+  visualLoadProgress: 1
   updateRoomEvent: {fileID: 11400000, guid: d8ca3e2326defaa40a32509a3307e9d9, type: 2}
   afterEnemyRoomLoaded: {fileID: 11400000, guid: af4c729e3cba87348a292d6c1921a3cd, type: 2}
   updateSceneLoadPanelEvent: {fileID: 11400000, guid: 39f983aac14d6044faee6590934c4670, type: 2}

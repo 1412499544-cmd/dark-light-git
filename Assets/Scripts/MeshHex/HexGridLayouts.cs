@@ -203,7 +203,7 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
     /// <summary>
     /// 获取技能范围的格子
     /// </summary>
-    /// <param name="hexTile"></param>
+    /// <param name="hexTile">网格</param>
     /// <returns></returns>
     private List<HexRenderer> GetSkillHexTiles(HexRenderer hexTile)
     {
@@ -232,16 +232,16 @@ public class HexGridLayouts : Singleton<HexGridLayouts>
     
     private void AddHexTileNeighbours(SkillHexTileConfigSO hexTileConfig, List<Vector2Int> neighbourCoords)
     {
-        for (int i = 1; i < hexTileConfig.addNumber+1; i++)
+        for (int i = 0; i < hexTileConfig.addNumber+1; i++)
         {
-            neighbourCoords.Add(hexTileConfig.skillHexTile.Up*i);
-            neighbourCoords.Add(hexTileConfig.skillHexTile.Down*i);
-            neighbourCoords.Add(hexTileConfig.skillHexTile.Right*i);
-            neighbourCoords.Add(hexTileConfig.skillHexTile.Left*i);
-            neighbourCoords.Add(hexTileConfig.skillHexTile.RightUp*i);
-            neighbourCoords.Add(hexTileConfig.skillHexTile.RightDown*i);
-            neighbourCoords.Add(hexTileConfig.skillHexTile.LeftDown*i);
-            neighbourCoords.Add(hexTileConfig.skillHexTile.LeftUp*i);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.up *i + hexTileConfig.skillHexTile.Up);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.down *i + hexTileConfig.skillHexTile.Down);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.left *i + hexTileConfig.skillHexTile.Left);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.right *i + hexTileConfig.skillHexTile.Right);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.leftUp *i + hexTileConfig.skillHexTile.LeftUp);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.leftDown *i + hexTileConfig.skillHexTile.LeftDown);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.rightUp *i + hexTileConfig.skillHexTile.RightUp);
+            neighbourCoords.Add(hexTileConfig.skillHexTile.rightDown *i + hexTileConfig.skillHexTile.RightDown);
         }
     }
 }

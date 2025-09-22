@@ -166,8 +166,7 @@ public class HexRenderer : MonoBehaviour
             if (column == e.column && line == e.line)
             {
                 m_meshRenderer.material.color = m_meshRenderer.material.color == originalColor ? Color.red : originalColor;
-
-                //TODO:显示可以移动的网格位置
+                
                 foreach (var neighbour in neighbours)
                 {
                     neighbour.m_meshRenderer.material.color = Color.blue;
